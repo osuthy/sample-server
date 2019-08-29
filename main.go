@@ -7,7 +7,7 @@ import (
 func main() {
 	e := echo.New()
 	e.GET("/", hello)
-	e.Start("localhost:8080")
+	e.Start("0.0.0.0:80")
 }
 
 func hello(c echo.Context) error {
