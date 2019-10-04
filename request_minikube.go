@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"os/exec"
 	"strconv"
 	"strings"
@@ -12,7 +11,8 @@ import (
 func main() {
 
 	namespaces := []string{"hoge", "fuga"}
-	minikube_ip := os.Getenv("minikube_ip")
+	minikube_ip_out, _ := exec.Command("minikube", "ip").Output()
+	minikube_ip := strings.TrimRight(string(minikube_ip_out), "\n")
 	wg := &sync.WaitGroup{}
 
 	for _, ns := range namespaces {
